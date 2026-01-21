@@ -57,19 +57,11 @@ AMyStream::~AMyStream( void )
 	}
 }
 
-AMyStream::AMyStream( AMyStream &rhs)
+AMyStream::AMyStream( AMyStream const &rhs )
 {
 	// canon copy constructor
 	// not used
 	(void)rhs;
-}
-
-AMyStream &	AMyStream::operator=( AMyStream &rhs )
-{
-	// canon = operator
-	// not used
-	(void)rhs;
-	return rhs;
 }
 
 void	AMyStream::setAutoSpace( bool value )
@@ -92,8 +84,6 @@ void	AMyStream::setOutput( std::ostream *value )
 
 AMyStream &	AMyStream::operator<<(std::string value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
@@ -102,8 +92,6 @@ AMyStream &	AMyStream::operator<<(std::string value)
 
 AMyStream &AMyStream::operator<<(char* value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
@@ -112,8 +100,6 @@ AMyStream &AMyStream::operator<<(char* value)
 
 AMyStream &AMyStream::operator<<(char const* value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
@@ -122,8 +108,6 @@ AMyStream &AMyStream::operator<<(char const* value)
 
 AMyStream &	AMyStream::operator<<(int value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
@@ -132,8 +116,6 @@ AMyStream &	AMyStream::operator<<(int value)
 
 AMyStream &	AMyStream::operator<<(unsigned int value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
@@ -142,8 +124,6 @@ AMyStream &	AMyStream::operator<<(unsigned int value)
 
 AMyStream &	AMyStream::operator<<(char value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
@@ -152,8 +132,6 @@ AMyStream &	AMyStream::operator<<(char value)
 
 AMyStream &	AMyStream::operator<<(size_t value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
@@ -162,8 +140,6 @@ AMyStream &	AMyStream::operator<<(size_t value)
 
 AMyStream &	AMyStream::operator<<(float value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value << "f";
@@ -172,8 +148,6 @@ AMyStream &	AMyStream::operator<<(float value)
 
 AMyStream &	AMyStream::operator<<(double value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
@@ -182,8 +156,6 @@ AMyStream &	AMyStream::operator<<(double value)
 
 AMyStream &	AMyStream::operator<<(bool value)
 {
-	if (!AMyStream)
-		return *this;
 	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
@@ -193,11 +165,7 @@ AMyStream &	AMyStream::operator<<(bool value)
 // Surcharge pour les manipulateurs de flux (std::endl...)
 AMyStream & AMyStream::operator<<(std::ostream& (*manip)(std::ostream&))
 {
-	if (!AMyStream)
-		return *this;
-	
 	*this->_iOutput << manip;
-	
 	// Si c'est un endl, on marque comme terminé
 	if (manip == static_cast<std::ostream& (*)(std::ostream&)>(std::endl))
 		this->_ended = true;

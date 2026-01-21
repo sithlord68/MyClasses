@@ -41,5 +41,3 @@ fclean: clean
 .PHONY: re
 re: fclean all
 
-test:
-	$(CC) $(FLAGT) -c $<
