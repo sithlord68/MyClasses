@@ -24,7 +24,23 @@ class MyDisplay: public AMyStream
 {
 	public:
 
+		MyDisplay( void );					// canon default constructor
+		virtual ~MyDisplay( void );			// canon destructor
+		MyDisplay &operator<<(std::string value);
+		MyDisplay &operator<<(int value);
+		MyDisplay &operator<<(unsigned int value);
+		MyDisplay &operator<<(size_t value);
+		MyDisplay &operator<<(float value);
+		MyDisplay &operator<<(double value);
+		MyDisplay &operator<<(bool value);
+		MyDisplay &operator<<(char* value);
+		MyDisplay &operator<<(char const *value);
+		MyDisplay &operator<<(char value);
+
 	private:
+
+		MyDisplay( MyDisplay &rhs);				// canon copy constructor
+		MyDisplay &operator=( MyDisplay &rhs );	// canon = operator
 
 };
 
