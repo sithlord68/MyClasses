@@ -2,9 +2,9 @@ NAME = testMyClasses
 
 SRC = AMyStream.cpp \
 		 MyDebug.cpp \
-		 MyDisplay.cpp \
 		 MyTools.cpp \
 		 test.cpp
+#		 MyDisplay.cpp \
 
 OBJS = $(SRC:.cpp=.o)
 

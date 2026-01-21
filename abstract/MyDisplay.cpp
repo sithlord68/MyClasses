@@ -17,7 +17,7 @@ std::ostream*	_iOutput = &std::cout;	// io clog
 bool 			_autoEndl = true;		// _autoEndl yes
 bool			_autoSpace = true;		// _autoSpace yes
 
-/*
+
 MyDisplay::~MyDisplay( void )
 {
 	// canon destructor
@@ -82,4 +82,3 @@ MyDisplay &	MyDisplay::operator<<(bool value)
 	AMyStream::operator<<(value);
 	return *this;
 }
-*/

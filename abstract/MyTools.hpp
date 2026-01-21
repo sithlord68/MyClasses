@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MyDisplay.hpp"
+//#include "MyDisplay.hpp"
 #include "MyDebug.hpp"
+#include <string>
+#include <iostream>
 
 #ifndef MYTOOLS_HPP
 # define MYTOOLS_HPP
