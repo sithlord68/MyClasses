@@ -1,14 +1,4 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   AMyStream.hpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/21 10:56:54 by pjolidon          #+#    #+#             */
-/*   Updated: 2026/01/21 11:23:16 by pjolidon         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
 
 #include <string>
 #include <iostream>
@@ -21,9 +11,9 @@ class AMyStream
 
 	public:
 
-		static void	setAutoSpace( bool value );
-		static void	setAutoEndl( bool value );
-		static void	setOutput( std::ostream *value );
+		void	setAutoSpace( bool value );
+		void	setAutoEndl( bool value );
+		void	setOutput( std::ostream *value );
 
 		AMyStream( void );									// canon
 		AMyStream( std::ostream* stream, bool autoSpace );
@@ -42,23 +32,23 @@ class AMyStream
 
 		AMyStream & operator<<(std::ostream& (*manip)(std::ostream&));
 
-		void setHeader( std::string  const &header );
+		static void setHeader( std::string  const &header );
 
 	protected:
 
-		virtual	~AMyStream( void );								// canon
+		virtual	~AMyStream( void ) = 0;								// canon
 
 		int					_nbElems;
 		std::ostream		*_iOutput;
 		bool				_ended;
-		static bool			_autoEndl;
-		static bool			_autoSpace;
-		static std::ostream	*iOutput;
+		bool				_autoEndl;
+		bool				_autoSpace;
+		std::ostream		*iOutput;
 		static std::string	_header;
 
 	private:
 		AMyStream( AMyStream const &rhs );						// canon
-		virtual AMyStream &operator=( AMyStream const &rhs );	// canon
+		AMyStream &operator=( AMyStream const &rhs );	// canon
 
 };
 

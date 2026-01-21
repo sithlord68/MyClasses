@@ -1,14 +1,5 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   AMyStream.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:56:18 by pjolidon          #+#    #+#             */
-/*   Updated: 2026/01/21 11:44:39 by pjolidon         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
 
 #include "AMyStream.hpp"
 
@@ -21,31 +12,28 @@ void	AMyStream::setHeader( std::string const &header )
 
 AMyStream::AMyStream( void ):
 	_nbElems( 0 ),
-	_ended( false )
+	_ended( false ),
+	_iOutput( &std::cout )
 {
-	// canon default constructor
-	this->_iOutput = iOutput;
 }
 
-AMyStream::AMyStream(std::ostream* stream, bool autoSp):
+AMyStream::AMyStream(std::ostream* stream, bool autoSpace):
 	_nbElems( 0 ),
-	_ended( false )
+	_ended( false ),
+	_iOutput(stream)
 {
-	setAutoSpace(autoSp);
-	if (stream)
-		this->_iOutput = stream;
-	else
-		this->_iOutput = iOutput;
+	setAutoSpace(autoSpace);
 }
 
-AMyStream::AMyStream(bool autoSp):
+AMyStream::AMyStream(bool autoSpace):
 	_nbElems( 0 ),
-	_iOutput( iOutput ),
-	_ended( false )
+	_ended( false ),
+	_iOutput(iOutput)
 {
-	setAutoSpace(autoSp);
+	setAutoSpace(autoSpace);
 }
 
+/*
 AMyStream::~AMyStream( void )
 {
 	// canon destructor
@@ -56,6 +44,7 @@ AMyStream::~AMyStream( void )
 		*this->_iOutput << std::endl;
 	}
 }
+*/
 
 AMyStream::AMyStream( AMyStream const &rhs )
 {
@@ -67,7 +56,7 @@ AMyStream::AMyStream( AMyStream const &rhs )
 void	AMyStream::setAutoSpace( bool value )
 {
 	// set auto space member function
-	_autoSpace = value;
+	this->_autoSpace = value;
 }
 
 void	AMyStream::setAutoEndl( bool value )

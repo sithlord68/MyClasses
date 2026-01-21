@@ -6,6 +6,8 @@ SRC = AMyStream.cpp \
 		 test.cpp
 #		 MyDisplay.cpp \
 
+ASK = ask.txt
+
 OBJS = $(SRC:.cpp=.o)
 
 BIN = $(NAME)
@@ -13,18 +15,20 @@ BIN = $(NAME)
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 CFLAGT = $(CFLAGS) -g3 -D MYDEBUG=1
 
+CC = g++
+
 %.o : %.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: all
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) -o $(BIN) $(OBJS)
+	$(CC) $(CFLAGS) -o $(BIN) $(OBJS)
 
 .PHONY: test
 test:
-	$(CC) $(FLAGT) -o $(BIN) $(SRC)
+	$(CC) $(CFLAGT) -o $(BIN) $(SRC)
 
 
 .PHONY: debug
@@ -37,7 +41,12 @@ clean:
 .PHONY: fclean
 fclean: clean
 	$(RM) $(BIN)
+	$(RM) $(ASK)
 
 .PHONY: re
 re: fclean all
 
+.PHONY: ask
+ask: fclean
+	@cat Makefile >$(ASK)
+	@cat *?pp >>$(ASK)
