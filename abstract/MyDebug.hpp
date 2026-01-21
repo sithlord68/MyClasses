@@ -27,6 +27,8 @@ class MyDebug: public AMyStream
 {
 	public:
 
+		MyDebug( void );					// canon default constructor
+		virtual ~MyDebug( void );			// canon destructor
 		MyDebug &operator<<(std::string value);
 		MyDebug &operator<<(int value);
 		MyDebug &operator<<(unsigned int value);
@@ -40,8 +42,6 @@ class MyDebug: public AMyStream
 
 	private:
 
-		MyDebug( void );					// canon default constructor
-		virtual ~MyDebug( void );			// canon destructor
 		MyDebug( MyDebug &rhs);				// canon copy constructor
 		MyDebug &operator=( MyDebug &rhs );	// canon = operator
 

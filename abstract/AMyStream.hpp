@@ -25,7 +25,7 @@ class AMyStream
 		static void	setAutoEndl( bool value );
 		static void	setOutput( std::ostream *value );
 
-		AMyStream( void );
+		AMyStream( void );									// canon
 		AMyStream( std::ostream* stream, bool autoSpace );
 		AMyStream( bool autoSpace );
 
@@ -46,7 +46,7 @@ class AMyStream
 
 	protected:
 
-		virtual	~AMyStream( void );						// canon
+		virtual	~AMyStream( void );								// canon
 
 		int					_nbElems;
 		std::ostream		*_iOutput;
@@ -57,8 +57,8 @@ class AMyStream
 		static std::string	_header;
 
 	private:
-		AMyStream( AMyStream const &rhs );				// canon
-		virtual AMyStream &operator=( AMyStream const &rhs ) = 0;	// canon
+		AMyStream( AMyStream const &rhs );						// canon
+		virtual AMyStream &operator=( AMyStream const &rhs );	// canon
 
 };
 
