@@ -27,12 +27,23 @@ class MyDebug: public AMyStream
 {
 	public:
 
+		MyDebug &operator<<(std::string value);
+		MyDebug &operator<<(int value);
+		MyDebug &operator<<(unsigned int value);
+		MyDebug &operator<<(size_t value);
+		MyDebug &operator<<(float value);
+		MyDebug &operator<<(double value);
+		MyDebug &operator<<(bool value);
+		MyDebug &operator<<(char* value);
+		MyDebug &operator<<(char const *value);
+		MyDebug &operator<<(char value);
+
 	private:
 
-		MyDebug( void );								// canon default constructor
-		virtual ~MyDebug( void );						// canon destructor
-		MyDebug( MyDebug &rhs);							// canon copy constructor
-		MyDebug &			operator=( MyDebug &rhs );	// canon = operator
+		MyDebug( void );					// canon default constructor
+		virtual ~MyDebug( void );			// canon destructor
+		MyDebug( MyDebug &rhs);				// canon copy constructor
+		MyDebug &operator=( MyDebug &rhs );	// canon = operator
 
 };
 
