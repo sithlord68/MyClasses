@@ -10,7 +10,7 @@ OBJS = $(SRC:.cpp=.o)
 
 BIN = $(NAME)
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 CFLAGT = $(CFLAGS) -g3 -D MYDEBUG=1
 
 %.o : %.cpp
