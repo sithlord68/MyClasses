@@ -6,7 +6,7 @@
 /*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:35:17 by pjolidon          #+#    #+#             */
-/*   Updated: 2025/12/06 11:51:03 by pjolidon         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:52:46 by pjolidon         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,13 +14,12 @@
 
 // Initialisation des attributs statiques
 std::ostream*	MyDisplay::iOutput = &std::cout;	// io clog
-bool 			MyDisplay::autoEndl = true;		// autoEndl yes
-bool			MyDisplay::autoSpace = true;		// autoSpace yes
+bool 			MyDisplay::_autoEndl = true;		// autoEndl yes
+bool			MyDisplay::_autoSpace = true;		// autoSpace yes
 
 MyDisplay::MyDisplay( void ):
 	_nbElems( 0 ),
-	_ended( false ),
-	_autoSpace( true )
+	_ended( false )
 {
 	// canon default constructor
 	this->_iOutput = iOutput;
@@ -28,9 +27,9 @@ MyDisplay::MyDisplay( void ):
 
 MyDisplay::MyDisplay(std::ostream* stream, bool autoSp):
 	_nbElems( 0 ),
-	_ended( false ),
-	_autoSpace( autoSp )
+	_ended( false )
 {
+	setAutoSpace(autoSp);
 	if (stream)
 		this->_iOutput = stream;
 	else
@@ -40,7 +39,7 @@ MyDisplay::MyDisplay(std::ostream* stream, bool autoSp):
 MyDisplay::~MyDisplay( void )
 {
 	// canon destructor
-	if (autoEndl && !this->_ended)
+	if (_autoEndl && !this->_ended)
 	{
 		*this->_iOutput << std::endl;
 	}
@@ -64,13 +63,13 @@ MyDisplay &	MyDisplay::operator=( MyDisplay &rhs )
 void	MyDisplay::setAutoSpace( bool value )
 {
 	// set auto space member function
-	autoSpace = value;
+	_autoSpace = value;
 }
 
 void	MyDisplay::setAutoEndl( bool value )
 {
 	// set auto endl member function
-	autoEndl = value;
+	_autoEndl = value;
 }
 
 void	MyDisplay::setOutput( std::ostream *value )
@@ -81,7 +80,7 @@ void	MyDisplay::setOutput( std::ostream *value )
 
 MyDisplay &	MyDisplay::operator<<(std::string value)
 {
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -89,7 +88,7 @@ MyDisplay &	MyDisplay::operator<<(std::string value)
 
 MyDisplay &MyDisplay::operator<<(const char* value)
 {
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -97,7 +96,23 @@ MyDisplay &MyDisplay::operator<<(const char* value)
 
 MyDisplay &	MyDisplay::operator<<(int value)
 {
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value;
+	return *this;
+}
+
+MyDisplay &	MyDisplay::operator<<(unsigned int value)
+{
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value;
+	return *this;
+}
+
+MyDisplay &	MyDisplay::operator<<(double value)
+{
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -105,15 +120,15 @@ MyDisplay &	MyDisplay::operator<<(int value)
 
 MyDisplay &	MyDisplay::operator<<(float value)
 {
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
-	*this->_iOutput << value;
+	*this->_iOutput << value << "f";
 	return *this;
 }
 
 MyDisplay &	MyDisplay::operator<<(bool value)
 {
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -128,5 +143,29 @@ MyDisplay & MyDisplay::operator<<(std::ostream& (*manip)(std::ostream&))
 	if (manip == static_cast<std::ostream& (*)(std::ostream&)>(std::endl))
 		this->_ended = true;
 	
+	return *this;
+}
+
+MyDisplay &	MyDisplay::operator<<(size_t value)
+{
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value;
+	return *this;
+}
+
+MyDisplay &	MyDisplay::operator<<(char value)
+{
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value;
+	return *this;
+}
+
+MyDisplay &MyDisplay::operator<<(char* value)
+{
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value;
 	return *this;
 }

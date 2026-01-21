@@ -6,7 +6,7 @@
 /*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:34:30 by pjolidon          #+#    #+#             */
-/*   Updated: 2025/12/06 21:03:40 by pjolidon         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:52:00 by pjolidon         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,19 +31,23 @@ class MyDebug
 		MyDebug( MyDebug &rhs);								// canon copy constructor
 		MyDebug &			operator=( MyDebug &rhs );	// canon = operator
 
-		void				setAutoSpace( bool value );
-		void				setAutoEndl( bool value );
-		void				setOutput( std::ostream *value );
+		static void			setAutoSpace( bool value );
+		static void			setAutoEndl( bool value );
+		static void			setOutput( std::ostream *value );
 
 		MyDebug( std::ostream* stream, bool autoSpace );
 		MyDebug( bool autoSpace );
 
 		MyDebug &operator<<(std::string value);
 		MyDebug &operator<<(int value);
+		MyDebug &operator<<(unsigned int value);
+		MyDebug &operator<<(size_t value);
 		MyDebug &operator<<(float value);
+		MyDebug &operator<<(double value);
 		MyDebug &operator<<(bool value);
-		MyDebug &operator<<(std::ostream value);
-		MyDebug &operator<<(const char* value);
+		MyDebug &operator<<(char* value);
+		MyDebug &operator<<(char const *value);
+		MyDebug &operator<<(char value);
 
 		MyDebug & operator<<(std::ostream& (*manip)(std::ostream&));   // pour operteurs de flux (fonction) tels que std::endl
 
@@ -52,34 +56,10 @@ class MyDebug
 		int					_nbElems;
 		std::ostream		*_iOutput;
 		bool				_ended;
-		bool				_autoSpace;
-		static bool			autoEndl;
-		static bool			autoSpace;
+		static bool			_autoEndl;
+		static bool			_autoSpace;
 		static std::ostream	*iOutput;
 
 };
 
 #endif
-
-/*
-		MyDebug& withContext(const std::string& context) {
-			if (_nbElems == 0) {
-				*_iOutput << "[" << context << "] ";
-				_nbElems++;
-			}
-			return *this;
-		}
-		// Template comme fonction membre
-		template<typename T>
-		static MyDebug classDebug(const T& obj, const std::string& readableName) {
-			MyDebug debug;
-			return debug.withContext(readableName);
-		}
-
-		// Version avec typeid
-		template<typename T>
-		static MyDebug classDebug(const T& obj) {
-			MyDebug debug;
-			return debug.withContext(typeid(T).name());
-		}
-*/

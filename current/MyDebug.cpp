@@ -6,7 +6,7 @@
 /*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:35:17 by pjolidon          #+#    #+#             */
-/*   Updated: 2025/12/06 21:03:36 by pjolidon         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:51:57 by pjolidon         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,8 +14,8 @@
 
 // Initialisation des attributs statiques
 std::ostream*	MyDebug::iOutput = &std::clog;	// io clog
-bool 			MyDebug::autoEndl = true;		// autoEndl yes
-bool			MyDebug::autoSpace = true;		// autoSpace yes
+bool 			MyDebug::_autoEndl = true;		// _autoEndl yes
+bool			MyDebug::_autoSpace = true;		// _autoSpace yes
 
 /*
 template<typename T>
@@ -26,8 +26,7 @@ MyDebug classDebug(const T& obj) {
 
 MyDebug::MyDebug( void ):
 	_nbElems( 0 ),
-	_ended( false ),
-	_autoSpace( true )
+	_ended( false )
 {
 	// canon default constructor
 	this->_iOutput = iOutput;
@@ -35,9 +34,9 @@ MyDebug::MyDebug( void ):
 
 MyDebug::MyDebug(std::ostream* stream, bool autoSp):
 	_nbElems( 0 ),
-	_ended( false ),
-	_autoSpace( autoSp )
+	_ended( false )
 {
+	setAutoSpace(autoSp);
 	if (stream)
 		this->_iOutput = stream;
 	else
@@ -47,10 +46,9 @@ MyDebug::MyDebug(std::ostream* stream, bool autoSp):
 MyDebug::MyDebug(bool autoSp):
 	_nbElems( 0 ),
 	_iOutput( iOutput ),
-	_ended( false ),
-	_autoSpace( autoSp )
+	_ended( false )
 {
-// autospace constructor
+	setAutoSpace(autoSp);
 }
 
 MyDebug::~MyDebug( void )
@@ -58,7 +56,7 @@ MyDebug::~MyDebug( void )
 	// canon destructor
 	if (!MYDEBUG)
 		return;
-	if (autoEndl && !this->_ended)
+	if (_autoEndl && !this->_ended)
 	{
 		*this->_iOutput << std::endl;
 	}
@@ -82,16 +80,16 @@ MyDebug &	MyDebug::operator=( MyDebug &rhs )
 void	MyDebug::setAutoSpace( bool value )
 {
 	// set auto space member function
-	autoSpace = value;
+	_autoSpace = value;
 }
 
 void	MyDebug::setAutoEndl( bool value )
 {
 	// set auto endl member function
-	autoEndl = value;
+	_autoEndl = value;
 }
 
-void	MyDebug::setOutput( std::ostream value )
+void	MyDebug::setOutput( std::ostream *value )
 {
 	// set output member function
 	iOutput = value;
@@ -101,17 +99,27 @@ MyDebug &	MyDebug::operator<<(std::string value)
 {
 	if (!MYDEBUG)
 		return *this;
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
 }
 
-MyDebug &MyDebug::operator<<(const char* value)
+MyDebug &MyDebug::operator<<(char* value)
 {
 	if (!MYDEBUG)
 		return *this;
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value;
+	return *this;
+}
+
+MyDebug &MyDebug::operator<<(char const* value)
+{
+	if (!MYDEBUG)
+		return *this;
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -121,7 +129,37 @@ MyDebug &	MyDebug::operator<<(int value)
 {
 	if (!MYDEBUG)
 		return *this;
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value;
+	return *this;
+}
+
+MyDebug &	MyDebug::operator<<(unsigned int value)
+{
+	if (!MYDEBUG)
+		return *this;
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value;
+	return *this;
+}
+
+MyDebug &	MyDebug::operator<<(char value)
+{
+	if (!MYDEBUG)
+		return *this;
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value;
+	return *this;
+}
+
+MyDebug &	MyDebug::operator<<(size_t value)
+{
+	if (!MYDEBUG)
+		return *this;
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -131,7 +169,17 @@ MyDebug &	MyDebug::operator<<(float value)
 {
 	if (!MYDEBUG)
 		return *this;
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
+		*this->_iOutput << " ";
+	*this->_iOutput << value << "f";
+	return *this;
+}
+
+MyDebug &	MyDebug::operator<<(double value)
+{
+	if (!MYDEBUG)
+		return *this;
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -141,7 +189,7 @@ MyDebug &	MyDebug::operator<<(bool value)
 {
 	if (!MYDEBUG)
 		return *this;
-	if (this->_autoSpace && this->_nbElems++)
+	if (_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
