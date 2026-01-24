@@ -19,7 +19,6 @@ class MyDebug: public AMyStream
 	public:
 
 		MyDebug( void );					// canon default constructor to set out to std::clog
-		MyDebug::MyDebug(bool autoSpace);	// to set out to std::clog
 		virtual ~MyDebug( void );			// canon destructor
 		MyDebug &operator<<(std::string value);
 		MyDebug &operator<<(int value);

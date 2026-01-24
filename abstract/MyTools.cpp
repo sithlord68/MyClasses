@@ -41,16 +41,16 @@ void	MyTools::toUpper( std::string *str )
 
 bool	MyTools::isEntier( float f )
 {
-	long long	ll = static_cast<long long>(f);
-	if (static_cast<float>(ll) == f)
+	long	l = static_cast<long>(f);
+	if (static_cast<float>(l) == f)
 		return true;
 	return false;
 }
 
 bool	MyTools::isEntier( double d )
 {
-	long long	ll = static_cast<long long>(d);
-	if (static_cast<float>(ll) == d)
+	long	l = static_cast<long>(d);
+	if (static_cast<float>(l) == d)
 		return true;
 	return false;
 }

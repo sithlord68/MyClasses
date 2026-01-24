@@ -6,7 +6,6 @@
 // Initialisation des attributs statiques
 //std::ostream*	_iOutput = &std::clog;	// io clog
 
-
 MyDebug::~MyDebug( void )
 {
 	// canon destructor
@@ -17,15 +16,6 @@ MyDebug::~MyDebug( void )
 MyDebug::MyDebug( void ):
 	AMyStream( &std::clog, true)
 {
-}
-
-MyDebug::MyDebug(bool autoSpace)
-{
-	this->_autoSpace = autoSpace;
-	this->_autoEndl = true;
-	this->_nbElems = 0;
-	this->_ended = false;
-	this->_iOutput = &std::clog;
 }
 
 MyDebug &	MyDebug::operator<<(std::string value)
