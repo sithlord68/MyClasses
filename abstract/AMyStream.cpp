@@ -29,7 +29,7 @@ AMyStream::AMyStream( void ):
 AMyStream::AMyStream(std::ostream* stream, bool autoSpace):
 	_iOutput( stream ),
 	_autoEndl( _autoEndlClass ),
-	_autoSpace( _autoSpace ),
+	_autoSpace( autoSpace ),
 	_separator( _separatorClass ),
 	_nbElems( 0 ),
 	_ended( false )
@@ -39,7 +39,7 @@ AMyStream::AMyStream(std::ostream* stream, bool autoSpace):
 AMyStream::AMyStream(bool autoSpace):
 	_iOutput( _iOutputClass ),
 	_autoEndl( _autoEndlClass ),
-	_autoSpace( _autoSpace ),
+	_autoSpace( autoSpace ),
 	_separator( _separatorClass ),
 	_nbElems( 0 ),
 	_ended( false )
@@ -57,7 +57,7 @@ AMyStream::AMyStream( AMyStream const &rhs )
 void	AMyStream::setAutoSpace( bool value )
 {
 	// set auto space member function
-	this->_autoSpaceClass = value;
+	_autoSpaceClass = value;
 }
 
 void	AMyStream::setAutoEndl( bool value )
@@ -79,7 +79,7 @@ void	AMyStream::setSeparator( char const c )
 
 AMyStream &	AMyStream::operator<<(std::string value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -87,7 +87,7 @@ AMyStream &	AMyStream::operator<<(std::string value)
 
 AMyStream &AMyStream::operator<<(char* value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -95,7 +95,7 @@ AMyStream &AMyStream::operator<<(char* value)
 
 AMyStream &AMyStream::operator<<(char const* value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -103,7 +103,7 @@ AMyStream &AMyStream::operator<<(char const* value)
 
 AMyStream &	AMyStream::operator<<(int value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -111,7 +111,7 @@ AMyStream &	AMyStream::operator<<(int value)
 
 AMyStream &	AMyStream::operator<<(unsigned int value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -119,7 +119,7 @@ AMyStream &	AMyStream::operator<<(unsigned int value)
 
 AMyStream &	AMyStream::operator<<(char value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -127,7 +127,7 @@ AMyStream &	AMyStream::operator<<(char value)
 
 AMyStream &	AMyStream::operator<<(size_t value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -135,7 +135,7 @@ AMyStream &	AMyStream::operator<<(size_t value)
 
 AMyStream &	AMyStream::operator<<(float value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value << "f";
 	return *this;
@@ -143,7 +143,7 @@ AMyStream &	AMyStream::operator<<(float value)
 
 AMyStream &	AMyStream::operator<<(double value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -151,7 +151,7 @@ AMyStream &	AMyStream::operator<<(double value)
 
 AMyStream &	AMyStream::operator<<(bool value)
 {
-	if (_autoSpace && this->_nbElems++)
+	if (this->_autoSpace && this->_nbElems++)
 		*this->_iOutput << " ";
 	*this->_iOutput << value;
 	return *this;
@@ -166,4 +166,17 @@ AMyStream & AMyStream::operator<<(std::ostream& (*manip)(std::ostream&))
 		this->_ended = true;
 	
 	return *this;
+}
+
+void	AMyStream::setDefaults( std::ostream* stream, std::string  const &header,
+					bool const autoSpace, bool const autoEndl)
+{
+	if (_defaultSet)
+		return;
+
+	setOutput(stream);
+	setHeader(header);
+	setAutoSpace(autoSpace);
+	setAutoEndl(autoEndl);
+	_defaultSet = true;
 }

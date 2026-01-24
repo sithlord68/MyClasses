@@ -39,7 +39,7 @@ class AMyStream
 
 	protected:
 
-		virtual	~AMyStream( void ) = 0;								// canon
+		virtual	~AMyStream( void ) = 0;					// canon
 
 		std::ostream		*_iOutput;
 		bool				_autoEndl;
@@ -54,9 +54,12 @@ class AMyStream
 		static std::string	_header;
 		static char			_separatorClass;
 
+		static bool			_defaultSet;
+
 	private:
-		AMyStream( AMyStream const &rhs );						// canon
-		AMyStream &operator=( AMyStream const &rhs );	// canon
+
+		AMyStream( AMyStream const &rhs );				// canon unused
+		AMyStream &operator=( AMyStream const &rhs );	// canon unused
 
 };
 
