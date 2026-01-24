@@ -9,42 +9,43 @@ void	AMyStream::setHeader( std::string const &header )
 {
 	_header = header;
 }
+		std::ostream		*_iOutput;
+		bool				_autoEndl;
+		bool				_autoSpace;
+		char				_separator;
+		int					_nbElems;
+		bool				_ended;
 
 AMyStream::AMyStream( void ):
+	_iOutput( _iOutputClass ),
+	_autoEndl( _autoEndlClass ),
+	_autoSpace( _autoSpaceClass ),
+	_separator( _separatorClass ),
 	_nbElems( 0 ),
-	_ended( false ),
-	_iOutput( &std::cout )
+	_ended( false )
 {
 }
 
 AMyStream::AMyStream(std::ostream* stream, bool autoSpace):
+	_iOutput( stream ),
+	_autoEndl( _autoEndlClass ),
+	_autoSpace( _autoSpace ),
+	_separator( _separatorClass ),
 	_nbElems( 0 ),
-	_ended( false ),
-	_iOutput(stream)
+	_ended( false )
 {
-	setAutoSpace(autoSpace);
 }
 
 AMyStream::AMyStream(bool autoSpace):
+	_iOutput( _iOutputClass ),
+	_autoEndl( _autoEndlClass ),
+	_autoSpace( _autoSpace ),
+	_separator( _separatorClass ),
 	_nbElems( 0 ),
-	_ended( false ),
-	_iOutput(iOutput)
+	_ended( false )
 {
 	setAutoSpace(autoSpace);
 }
-
-/*
-AMyStream::~AMyStream( void )
-{
-	// canon destructor
-	if (!_nbElems)
-		return;
-	if (_autoEndl && !this->_ended)
-	{
-		*this->_iOutput << std::endl;
-	}
-}
-*/
 
 AMyStream::AMyStream( AMyStream const &rhs )
 {
@@ -56,19 +57,24 @@ AMyStream::AMyStream( AMyStream const &rhs )
 void	AMyStream::setAutoSpace( bool value )
 {
 	// set auto space member function
-	this->_autoSpace = value;
+	this->_autoSpaceClass = value;
 }
 
 void	AMyStream::setAutoEndl( bool value )
 {
 	// set auto endl member function
-	_autoEndl = value;
+	_autoEndlClass = value;
 }
 
 void	AMyStream::setOutput( std::ostream *value )
 {
 	// set output member function
-	iOutput = value;
+	_iOutputClass = value;
+}
+
+void	AMyStream::setSeparator( char const c )
+{
+	_separatorClass = c;
 }
 
 AMyStream &	AMyStream::operator<<(std::string value)
