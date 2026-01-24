@@ -1,33 +1,30 @@
 /*   MyDebug.cpp                                        :+:      :+:    :+:   */
 /*   Created: 2025/11/06 14:35:17 by pjolidon          #+#    #+#             */
 
-#include "MyDebug.hpp"
+/*#include "MyDebug.hpp"
+*/
+
+#ifndef MYDEBUG_IMPLEMENTATION
+# define MYDEBUG_IMPLEMENTATION
 
 // Initialisation des attributs statiques
 //std::ostream*	_iOutput = &std::clog;	// io clog
 
+
 MyDebug::~MyDebug( void )
 {
 	// canon destructor
-	if (!MYDEBUG)
-		return;
 }
 
-MyDebug::MyDebug( void )
+MyDebug::MyDebug( void ):
+	AMyStream( &std::clog, true)
 {
-	setDefaults(&std::clog, "[Debug]", true, true);
 }
 
-MyDebug::MyDebug(bool autoSpace)
+MyDebug::MyDebug(bool autoSpace):
+	AMyStream( &std::clog, autoSpace)
 {
-	setDefaults(&std::clog, "[Debug]", autoSpace, true);
 }
-
-MyDebug::MyDebug(std::ostream* stream, bool autoSpace)
-{
-	setDefaults(stream, "[Debug]", autoSpace, true);
-}
-
 
 MyDebug &	MyDebug::operator<<(std::string value)
 {
@@ -108,3 +105,5 @@ MyDebug &	MyDebug::operator<<(bool value)
 	AMyStream::operator<<(value);
 	return *this;
 }
+
+#endif

@@ -40,4 +40,6 @@ class MyDebug: public AMyStream
 
 };
 
+#include "MyDebug.tpp"
+
 #endif

@@ -1,7 +1,11 @@
 /*   AMyStream.cpp                                      :+:      :+:    :+:   */
 /*   Created: 2026/01/21 10:56:18 by pjolidon          #+#    #+#             */
 
-#include "AMyStream.hpp"
+/*#include "AMyStream.hpp"
+*/
+
+#ifndef AMYSTREAM_IMPLEMENTATION
+# define AMYSTREAM_IMPLEMENTATION
 
 std::string	AMyStream::_header = "";
 std::ostream*	AMyStream::_outputClass    = &std::cout;
@@ -195,3 +199,5 @@ void	AMyStream::setDefaults( std::ostream* stream, std::string  const &header,
 	setAutoEndl(autoEndl);
 	_defaultSet = true;
 }
+
+#endif

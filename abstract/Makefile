@@ -1,10 +1,10 @@
 NAME = testMyClasses
 
-SRC = AMyStream.cpp \
-		 MyDebug.cpp \
-		 MyTools.cpp \
-		 MyDisplay.cpp \
-		 test.cpp
+SRC = 	test.cpp
+#		MyTools.cpp \
+#		AMyStream.cpp \
+#		MyDebug.cpp \
+#		MyDisplay.cpp \
 
 ASK = ask.txt
 
@@ -108,8 +108,8 @@ prender:	fclean
 
 .PHONY: ask
 ask:	fclean
-	@cat Makefile > ask.txt
-	@cat *hpp >> ask.txt	
-	@cat *tpp >> ask.txt	
-	@cat *cpp >> ask.txt	
+	@cat Makefile > ask.txt || true
+	@cat *hpp >> ask.txt || true
+	@cat *tpp >> ask.txt || true
+	@cat *cpp >> ask.txt || true
 

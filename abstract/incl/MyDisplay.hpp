@@ -37,5 +37,6 @@ class MyDisplay: public AMyStream
 
 };
 
-#endif
+#include "MyDisplay.tpp"
 
+#endif

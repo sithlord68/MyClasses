@@ -1,7 +1,11 @@
 /*   MyDisplay.cpp                                      :+:      :+:    :+:   */
 /*   Created: 2025/11/06 14:35:17 by pjolidon          #+#    #+#             */
 
-#include "MyDisplay.hpp"
+/*#include "MyDisplay.hpp"
+*/
+
+#ifndef MYDISPLAY_IMPLEMENTATION
+# define MYDISPLAY_IMPLEMENTATION
 
 // Initialisation des attributs statiques
 // std::ostream*	_iOutput = &std::cout;	// io clog
@@ -86,3 +90,5 @@ MyDisplay &	MyDisplay::operator<<(bool value)
 	AMyStream::operator<<(value);
 	return *this;
 }
+
+#endif

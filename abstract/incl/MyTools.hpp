@@ -29,4 +29,6 @@ class MyTools
 		
 };
 
+#include "MyTools.tpp"
+
 #endif

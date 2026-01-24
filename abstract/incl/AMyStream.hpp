@@ -65,5 +65,6 @@ class AMyStream
 
 };
 
+#include "AMyStream.tpp"
 
 #endif

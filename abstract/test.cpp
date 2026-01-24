@@ -1,4 +1,6 @@
-#include "MyTools.hpp"
+/*#include "incl/MyTools.hpp" */
+#include "incl/MyDisplay.hpp"
+#include "incl/MyDebug.hpp"
 
 int main ( void )
 {

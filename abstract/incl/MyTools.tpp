@@ -1,7 +1,11 @@
 /*   MyTools.cpp                                        :+:      :+:    :+:   */
 /*   Created: 2026/01/20 19:23:53 by pjolidon          #+#    #+#             */
 
-#include "MyTools.hpp"
+/*#include "MyTools.hpp"
+*/
+
+#ifndef MYTOOLS_IMPLEMENTATION
+# define MYTOOLS_IMPLEMENTATION
 
 char	MyTools::toLower( char c )
 {
@@ -77,3 +81,5 @@ MyTools &MyTools::operator=( MyTools & rhs )
 	(void)rhs;
 	return *this;
 }
+
+#endif
