@@ -13,10 +13,21 @@ MyDebug::~MyDebug( void )
 		return;
 }
 
-MyDebug::MyDebug( void ):
-	AMyStream( &std::clog, true)
+MyDebug::MyDebug( void )
 {
+	setDefaults(&std::clog, "[Debug]", true, true);
 }
+
+MyDebug::MyDebug(bool autoSpace)
+{
+	setDefaults(&std::clog, "[Debug]", autoSpace, true);
+}
+
+MyDebug::MyDebug(std::ostream* stream, bool autoSpace)
+{
+	setDefaults(stream, "[Debug]", autoSpace, true);
+}
+
 
 MyDebug &	MyDebug::operator<<(std::string value)
 {

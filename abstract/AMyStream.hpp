@@ -13,8 +13,9 @@ class AMyStream
 
 
 		AMyStream( void );									// canon
-		AMyStream( std::ostream* stream, bool autoSpace );
 		AMyStream( bool const autoSpace );
+		AMyStream( std::ostream* stream, bool autoSpace );
+
 
 		virtual AMyStream &operator<<(std::string value);
 		virtual AMyStream &operator<<(int value);

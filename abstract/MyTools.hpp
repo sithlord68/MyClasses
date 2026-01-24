@@ -5,7 +5,6 @@
 #include "MyDebug.hpp"
 #include <string>
 #include <iostream>
-#include <cstdint>		// pour int64_t a la place de long long
 
 #ifndef MYTOOLS_HPP
 # define MYTOOLS_HPP
