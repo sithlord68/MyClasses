@@ -1,8 +1,14 @@
-/*   AMyStream.cpp                                      :+:      :+:    :+:   */
+/******************************************************************************/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AMyStream.tpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:56:18 by pjolidon          #+#    #+#             */
-
-/*#include "AMyStream.hpp"
-*/
+/*   Updated: 2026/01/24 22:39:03 by pjolidon         ###   ########.fr       */
+/*                                                                            */
+/******************************************************************************/
 
 #ifndef AMYSTREAM_IMPLEMENTATION
 # define AMYSTREAM_IMPLEMENTATION

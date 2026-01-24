@@ -1,14 +1,18 @@
-/*   MyDebug.cpp                                        :+:      :+:    :+:   */
+/******************************************************************************/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MyDebug.tpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:35:17 by pjolidon          #+#    #+#             */
+/*   Updated: 2026/01/24 22:36:22 by pjolidon         ###   ########.fr       */
+/*                                                                            */
+/******************************************************************************/
 
-/*#include "MyDebug.hpp"
-*/
 
 #ifndef MYDEBUG_IMPLEMENTATION
 # define MYDEBUG_IMPLEMENTATION
-
-// Initialisation des attributs statiques
-//std::ostream*	_iOutput = &std::clog;	// io clog
 
 
 MyDebug::~MyDebug( void )

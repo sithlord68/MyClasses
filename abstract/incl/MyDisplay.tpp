@@ -1,14 +1,17 @@
-/*   MyDisplay.cpp                                      :+:      :+:    :+:   */
+/******************************************************************************/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MyDisplay.tpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:35:17 by pjolidon          #+#    #+#             */
-
-/*#include "MyDisplay.hpp"
-*/
+/*   Updated: 2026/01/24 22:37:11 by pjolidon         ###   ########.fr       */
+/*                                                                            */
+/******************************************************************************/
 
 #ifndef MYDISPLAY_IMPLEMENTATION
 # define MYDISPLAY_IMPLEMENTATION
-
-// Initialisation des attributs statiques
-// std::ostream*	_iOutput = &std::cout;	// io clog
 
 MyDisplay::~MyDisplay( void )
 {
