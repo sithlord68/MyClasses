@@ -3,8 +3,8 @@ NAME = testMyClasses
 SRC = AMyStream.cpp \
 		 MyDebug.cpp \
 		 MyTools.cpp \
+		 MyDisplay.cpp \
 		 test.cpp
-#		 MyDisplay.cpp \
 
 ASK = ask.txt
 

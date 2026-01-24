@@ -1,7 +1,7 @@
 /*   MyTools.hpp                                        :+:      :+:    :+:   */
 /*   Created: 2026/01/20 16:58:32 by pjolidon          #+#    #+#             */
 
-//#include "MyDisplay.hpp"
+#include "MyDisplay.hpp"
 #include "MyDebug.hpp"
 #include <string>
 #include <iostream>

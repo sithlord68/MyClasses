@@ -15,7 +15,9 @@ class MyDisplay: public AMyStream
 {
 	public:
 
-		MyDisplay( void );					// canon default constructor
+		MyDisplay( void );					// canon default constructor to set out to std::clog
+		MyDisplay( bool const autoSpace );
+		MyDisplay( std::ostream* stream, bool autoSpace );
 		virtual ~MyDisplay( void );			// canon destructor
 		MyDisplay &operator<<(std::string value);
 		MyDisplay &operator<<(int value);

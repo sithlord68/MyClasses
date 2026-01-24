@@ -2,8 +2,8 @@
 
 int main ( void )
 {
-    MyDebug() << "Test debug" << 1;
-    //MyDisplay() << "Test Display" << 2;
+    MyDebug() << "Test DEBUG class" << 1;
+    MyDisplay() << "Test DISPLAY class" << 2;
 
     return 0;
 }

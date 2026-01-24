@@ -11,6 +11,22 @@ MyDisplay::~MyDisplay( void )
 	// canon destructor
 }
 
+MyDisplay::MyDisplay( void )
+{
+	setDefaults(&std::cout, "", true, true);
+}
+
+MyDisplay::MyDisplay(bool autoSpace)
+{
+	setDefaults(&std::cout, "", autoSpace, true);
+}
+
+MyDisplay::MyDisplay(std::ostream* stream, bool autoSpace)
+{
+	setDefaults(stream, "", autoSpace, true);
+}
+
+
 MyDisplay &	MyDisplay::operator<<(std::string value)
 {
 	AMyStream::operator<<(value);

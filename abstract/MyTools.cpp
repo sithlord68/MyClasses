@@ -54,3 +54,26 @@ bool	MyTools::isEntier( double d )
 		return true;
 	return false;
 }
+
+MyTools::MyTools( void )
+{
+	// canon defautl constructor not used
+}
+
+MyTools::MyTools( MyTools & rhs )
+{
+	// canon copy constructor not used
+	(void)rhs;
+}
+
+MyTools::~MyTools( void )
+{
+	// canon default destructor not used
+}
+
+MyTools &MyTools::operator=( MyTools & rhs )
+{
+	// canon = operator not used
+	(void)rhs;
+	return *this;
+}

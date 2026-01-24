@@ -13,6 +13,8 @@ bool			AMyStream::_defaultSet     = false;
 AMyStream::~AMyStream( void )
 {
 	// canon destructor
+    if (this->_autoEndl && this->_nbElems && !this->_ended)
+        *this->_output << std::endl;
 }
 
 void	AMyStream::setHeader( std::string const &header )
