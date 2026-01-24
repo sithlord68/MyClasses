@@ -15,7 +15,8 @@ class AMyStream
 		AMyStream( void );									// canon
 		AMyStream( bool const autoSpace );
 		AMyStream( std::ostream* stream, bool autoSpace );
-
+		AMyStream( std::ostream* stream, bool autoSpace, bool autoEndl );
+		AMyStream( std::ostream* stream, bool autoSpace, bool autoEndl, char separator );
 
 		virtual AMyStream &operator<<(std::string value);
 		virtual AMyStream &operator<<(int value);
@@ -40,9 +41,7 @@ class AMyStream
 
 	protected:
 
-		virtual	~AMyStream( void ) = 0;					// canon
-
-		std::ostream		*_iOutput;
+		std::ostream		*_output;
 		bool				_autoEndl;
 		bool				_autoSpace;
 		char				_separator;
@@ -51,11 +50,13 @@ class AMyStream
 	
 		static bool			_autoSpaceClass;
 		static bool			_autoEndlClass;
-		static std::ostream	*_iOutputClass;
+		static std::ostream	*_outputClass;
 		static std::string	_header;
 		static char			_separatorClass;
 
 		static bool			_defaultSet;
+
+		virtual	~AMyStream( void ) = 0;					// canon
 
 	private:
 
