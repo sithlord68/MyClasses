@@ -4,17 +4,21 @@
 #include "AMyStream.hpp"
 
 std::string	AMyStream::_header = "";
+std::ostream*	AMyStream::_outputClass    = &std::cout;
+bool			AMyStream::_autoSpaceClass = true;
+bool			AMyStream::_autoEndlClass  = true;
+char			AMyStream::_separatorClass = ' ';
+bool			AMyStream::_defaultSet     = false;
+
+AMyStream::~AMyStream( void )
+{
+	// canon destructor
+}
 
 void	AMyStream::setHeader( std::string const &header )
 {
 	_header = header;
 }
-		std::ostream		*_output;
-		bool				_autoEndl;
-		bool				_autoSpace;
-		char				_separator;
-		int					_nbElems;
-		bool				_ended;
 
 AMyStream::AMyStream( void ):
 	_output( _outputClass ),
