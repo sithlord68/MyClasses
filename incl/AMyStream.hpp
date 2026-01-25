@@ -6,7 +6,7 @@
 /*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/24 22:34:45 by pjolidon          #+#    #+#             */
-/*   Updated: 2026/01/24 22:34:50 by pjolidon         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:01:36 by pjolidon         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,10 +44,8 @@ class AMyStream
 		static void	setOutput( std::ostream *value );
 		static void setAutoSpace( bool const autoSpace );
 		static void setAutoEndl( bool const autoEndl );
-		static void setHeader( std::string  const &header );
 		static void	setSeparator( char const c );
-		static void	setDefaults( std::ostream* stream, std::string  const &header,
-					bool const autoSpace, bool const autoEndl);
+		static void	setDefaults( std::ostream* stream, bool const autoSpace, bool const autoEndl );
 
 	protected:
 
@@ -61,11 +59,11 @@ class AMyStream
 		static bool			_autoSpaceClass;
 		static bool			_autoEndlClass;
 		static std::ostream	*_outputClass;
-		static std::string	_header;
 		static char			_separatorClass;
 
 		static bool			_defaultSet;
 
+		virtual void		outputHeader( void ) = 0;
 		virtual	~AMyStream( void ) = 0;					// canon
 
 	private:

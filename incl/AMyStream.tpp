@@ -6,14 +6,13 @@
 /*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:56:18 by pjolidon          #+#    #+#             */
-/*   Updated: 2026/01/24 22:39:03 by pjolidon         ###   ########.fr       */
+/*   Updated: 2026/01/25 19:37:43 by pjolidon         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef AMYSTREAM_IMPLEMENTATION
 # define AMYSTREAM_IMPLEMENTATION
 
-std::string	AMyStream::_header = "";
 std::ostream*	AMyStream::_outputClass    = &std::cout;
 bool			AMyStream::_autoSpaceClass = true;
 bool			AMyStream::_autoEndlClass  = true;
@@ -27,11 +26,6 @@ AMyStream::~AMyStream( void )
         *this->_output << std::endl;
 }
 
-void	AMyStream::setHeader( std::string const &header )
-{
-	_header = header;
-}
-
 AMyStream::AMyStream( void ):
 	_output( _outputClass ),
 	_autoEndl( _autoEndlClass ),
@@ -41,6 +35,7 @@ AMyStream::AMyStream( void ):
 	_ended( false )
 {
 }
+
 AMyStream::AMyStream( std::ostream* stream, bool autoSpace, bool autoEndl, char separator ):
 	_output( stream ),
 	_autoEndl( autoEndl ),
@@ -104,6 +99,7 @@ void	AMyStream::setSeparator( char const c )
 
 AMyStream &	AMyStream::operator<<(std::string value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value;
@@ -112,6 +108,7 @@ AMyStream &	AMyStream::operator<<(std::string value)
 
 AMyStream &AMyStream::operator<<(char* value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value;
@@ -120,6 +117,7 @@ AMyStream &AMyStream::operator<<(char* value)
 
 AMyStream &AMyStream::operator<<(char const* value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value;
@@ -128,6 +126,7 @@ AMyStream &AMyStream::operator<<(char const* value)
 
 AMyStream &	AMyStream::operator<<(int value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value;
@@ -136,6 +135,7 @@ AMyStream &	AMyStream::operator<<(int value)
 
 AMyStream &	AMyStream::operator<<(unsigned int value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value;
@@ -144,6 +144,7 @@ AMyStream &	AMyStream::operator<<(unsigned int value)
 
 AMyStream &	AMyStream::operator<<(char value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value;
@@ -152,6 +153,7 @@ AMyStream &	AMyStream::operator<<(char value)
 
 AMyStream &	AMyStream::operator<<(size_t value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value;
@@ -160,6 +162,7 @@ AMyStream &	AMyStream::operator<<(size_t value)
 
 AMyStream &	AMyStream::operator<<(float value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value << "f";
@@ -168,6 +171,7 @@ AMyStream &	AMyStream::operator<<(float value)
 
 AMyStream &	AMyStream::operator<<(double value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value;
@@ -176,6 +180,7 @@ AMyStream &	AMyStream::operator<<(double value)
 
 AMyStream &	AMyStream::operator<<(bool value)
 {
+	outputHeader();
 	if (this->_autoSpace && this->_nbElems++)
 		*this->_output << " ";
 	*this->_output << value;
@@ -193,14 +198,12 @@ AMyStream & AMyStream::operator<<(std::ostream& (*manip)(std::ostream&))
 	return *this;
 }
 
-void	AMyStream::setDefaults( std::ostream* stream, std::string  const &header,
-					bool const autoSpace, bool const autoEndl)
+void	AMyStream::setDefaults( std::ostream* stream, bool const autoSpace, bool const autoEndl)
 {
 	if (_defaultSet)
 		return;
 
 	setOutput(stream);
-	setHeader(header);
 	setAutoSpace(autoSpace);
 	setAutoEndl(autoEndl);
 	_defaultSet = true;
