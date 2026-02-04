@@ -1,14 +1,5 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   MyDebug.hpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:34:30 by pjolidon          #+#    #+#             */
-/*   Updated: 2026/01/25 19:41:48 by pjolidon         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
 
 #include <string>
 #include <iostream>
@@ -21,7 +12,7 @@
 #  define MYDEBUG 0
 # endif
 
-#include "AMyStream.hpp"
+# include "AMyStream.hpp"
 
 class MyDebug: public AMyStream
 {
@@ -55,6 +46,6 @@ class MyDebug: public AMyStream
 
 };
 
-#include "MyDebug.tpp"
+# include "MyDebug.tpp"
 
 #endif

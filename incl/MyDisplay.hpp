@@ -1,14 +1,5 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   MyDisplay.hpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:34:30 by pjolidon          #+#    #+#             */
-/*   Updated: 2026/01/25 19:41:28 by pjolidon         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
 
 #include <string>
 #include <iostream>
@@ -18,7 +9,7 @@
 # define MYDISPLAY_HPP
 
 
-#include "AMyStream.hpp"
+# include "AMyStream.hpp"
 
 class MyDisplay: public AMyStream
 {
@@ -52,6 +43,6 @@ class MyDisplay: public AMyStream
 
 };
 
-#include "MyDisplay.tpp"
+# include "MyDisplay.tpp"
 
 #endif
