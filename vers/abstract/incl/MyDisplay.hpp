@@ -1,14 +1,5 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   MyDisplay.hpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:34:30 by pjolidon          #+#    #+#             */
-/*   Updated: 2026/01/24 22:36:45 by pjolidon         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
 
 #include <string>
 #include <iostream>
@@ -18,7 +9,7 @@
 # define MYDISPLAY_HPP
 
 
-#include "AMyStream.hpp"
+# include "AMyStream.hpp"
 
 class MyDisplay: public AMyStream
 {
@@ -28,6 +19,7 @@ class MyDisplay: public AMyStream
 		MyDisplay( bool const autoSpace );
 		MyDisplay( std::ostream* stream, bool autoSpace );
 		virtual ~MyDisplay( void );			// canon destructor
+
 		MyDisplay &operator<<(std::string value);
 		MyDisplay &operator<<(int value);
 		MyDisplay &operator<<(unsigned int value);
@@ -39,13 +31,18 @@ class MyDisplay: public AMyStream
 		MyDisplay &operator<<(char const *value);
 		MyDisplay &operator<<(char value);
 
+		static void			setHeader( std::string const &header );
+
 	private:
+
+		static std::string	_header;
+		void				outputHeader( void );
 
 		MyDisplay( MyDisplay &rhs);				// canon copy constructor
 		MyDisplay &operator=( MyDisplay &rhs );	// canon = operator
 
 };
 
-#include "MyDisplay.tpp"
+# include "MyDisplay.tpp"
 
 #endif

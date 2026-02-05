@@ -1,26 +1,17 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   MyTools.tpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 19:23:53 by pjolidon          #+#    #+#             */
-/*   Updated: 2026/01/24 22:38:06 by pjolidon         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
 
 #ifndef MYTOOLS_IMPLEMENTATION
 # define MYTOOLS_IMPLEMENTATION
 
-char	MyTools::toLower( char c )
+inline char	MyTools::toLower( char c )
 {
 	if ( c >= 'A' && c <= 'Z')
 		return c - 'A' + 'a';
 	return c;
 }
 
-void	MyTools::toLower( std::string *str )
+inline void	MyTools::toLower( std::string *str )
 {
 	size_t	len = (*str).length();
 
@@ -31,14 +22,14 @@ void	MyTools::toLower( std::string *str )
 	}
 }
 
-char	MyTools::toUpper( char c )
+inline char	MyTools::toUpper( char c )
 {
 	if ( c >= 'a' && c <= 'z')
 		return c - 'a' + 'A';
 	return c;
 }
 
-void	MyTools::toUpper( std::string *str )
+inline void	MyTools::toUpper( std::string *str )
 {
 	size_t	len = (*str).length();
 
@@ -49,7 +40,7 @@ void	MyTools::toUpper( std::string *str )
 	}
 }
 
-bool	MyTools::isEntier( float f )
+inline bool	MyTools::isEntier( float f )
 {
 	long	l = static_cast<long>(f);
 	if (static_cast<float>(l) == f)
@@ -57,7 +48,7 @@ bool	MyTools::isEntier( float f )
 	return false;
 }
 
-bool	MyTools::isEntier( double d )
+inline bool	MyTools::isEntier( double d )
 {
 	long	l = static_cast<long>(d);
 	if (static_cast<float>(l) == d)
@@ -65,27 +56,32 @@ bool	MyTools::isEntier( double d )
 	return false;
 }
 
-MyTools::MyTools( void )
+inline MyTools::MyTools( void )
 {
 	// canon defautl constructor not used
 }
 
-MyTools::MyTools( MyTools & rhs )
+inline MyTools::MyTools( MyTools & rhs )
 {
 	// canon copy constructor not used
 	(void)rhs;
 }
 
-MyTools::~MyTools( void )
+inline MyTools::~MyTools( void )
 {
 	// canon default destructor not used
 }
 
-MyTools &MyTools::operator=( MyTools & rhs )
+inline MyTools &MyTools::operator=( MyTools & rhs )
 {
 	// canon = operator not used
 	(void)rhs;
 	return *this;
+}
+
+inline int	MyTools::myRandom(int min, int max)
+{
+	return std::rand() % (max - min + 1) + min;
 }
 
 #endif

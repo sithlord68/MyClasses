@@ -1,14 +1,5 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   MyDebug.hpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pjolidon <pjolidon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 14:34:30 by pjolidon          #+#    #+#             */
-/*   Updated: 2026/01/24 22:35:56 by pjolidon         ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
 
 #include <string>
 #include <iostream>
@@ -21,7 +12,7 @@
 #  define MYDEBUG 0
 # endif
 
-#include "AMyStream.hpp"
+# include "AMyStream.hpp"
 
 class MyDebug: public AMyStream
 {
@@ -31,6 +22,7 @@ class MyDebug: public AMyStream
 		MyDebug( bool const autoSpace );
 		MyDebug( std::ostream* stream, bool autoSpace );
 		virtual ~MyDebug( void );			// canon destructor
+
 		MyDebug &operator<<(std::string value);
 		MyDebug &operator<<(int value);
 		MyDebug &operator<<(unsigned int value);
@@ -42,13 +34,18 @@ class MyDebug: public AMyStream
 		MyDebug &operator<<(char const *value);
 		MyDebug &operator<<(char value);
 
+		static void			setHeader( std::string const &header );
+
 	private:
+
+		static std::string	_header;
+		void				outputHeader( void );
 
 		MyDebug( MyDebug &rhs);				// canon copy constructor
 		MyDebug &operator=( MyDebug &rhs );	// canon = operator
 
 };
 
-#include "MyDebug.tpp"
+# include "MyDebug.tpp"
 
 #endif
